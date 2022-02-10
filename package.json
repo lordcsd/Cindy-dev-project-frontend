@@ -1,6 +1,6 @@
 {
-  "name": "food-mart-admin",
-  "homepage": "http://admin.teenahstores.com",
+  "name": "Xpress-meal",
+  "homepage": "https://xpress-meal.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
