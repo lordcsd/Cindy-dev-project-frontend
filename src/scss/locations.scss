@@ -1,0 +1,60 @@
+@import "../scss/variables.scss";
+
+.presentDateContain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  .presentDate {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h2 {
+      color: $black;
+    }
+    h3 {
+      color: $lightBlue;
+    }
+  }
+}
+
+.placesInputContain {
+  margin: 0 0 1em 1em;
+  h2 {
+    color: $black;
+  }
+}
+
+.location-search-input-holder {
+  .location-search-input {
+    padding: 5px;
+    border: 2px solid $lightBlue;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+  button{
+    margin: 0 0 0 10px;
+  }
+}
+
+.autocomplete-dropdown-container {
+  background-color: white;
+  border-radius: 3px;
+  position: absolute;
+  z-index: 3;
+  padding: 5px;
+  @include shadow();
+}
+
+.suggestion-item--active {
+  background-color: $lightBlue;
+  color: white;
+  padding: 5px;
+}
+
+.suggestion-item {
+  background-color: white;
+  color: $lightBlue;
+  padding: 5px;
+}

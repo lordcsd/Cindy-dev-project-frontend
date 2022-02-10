@@ -1,0 +1,69 @@
+@import "../scss/variables.scss";
+
+.deliveryFeesRoot {
+  padding: 1rem;
+  .headerDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $black;
+    button {
+      @include fillButton($lightBlue);
+    }
+  }
+
+  .addNew {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: $lightBlue;
+    @include shadow();
+    path {
+      fill: white;
+    }
+  }
+  .deliveryFeesContainer {
+    .blankCard {
+      padding: 0 10px;
+      margin: 0 0 10px 0;
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+      grid-gap: 2rem;
+      align-items: center;
+      background-color: white;
+      @include shadow();
+    }
+    .deliveryFeeCard {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      border-radius: $inputBorderRadius;
+      @include shadow();
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        input {
+          margin: 10px 10px 0 0;
+          padding: 5px;
+          border-radius: $inputBorderRadius;
+          outline: none;
+          border: none;
+          background-color: $grey;
+        }
+      }
+      .buttons {
+        button {
+          @include fillButton($lightBlue);
+          margin: 10px 10px 10px 0;
+        }
+      }
+    }
+  }
+}

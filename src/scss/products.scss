@@ -1,0 +1,133 @@
+@import "./variables.scss";
+
+.productsRoot {
+  background: $lightBackground;
+  padding: 1rem;
+  .titleDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .productsHeader {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: $lightBlue;
+    border-radius: 5px 5px 0 0;
+    color: white;
+  }
+
+  .pageButtons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    .pageButton {
+      background-color: $lightBlue;
+      height: 2em;
+      width: 2em;
+      font-size: 1em;
+      font-weight: bold;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 3px;
+      margin: 3px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .ProductsCardContain {
+    @include shadow();
+    border-radius: 5px;
+    width: 100%;
+    background: $grey;
+    .productCard {
+      display: grid;
+      grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr;
+      grid-gap: 1rem;
+      padding: 5px 10px;
+      margin: 5px 0;
+      align-items: center;
+      background: white;
+      color: $black;
+      p {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      .productImage {
+        height: 100px;
+        width: 100px;
+        border-radius: 3px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.editProducts {
+  padding: 10px 0;
+  border-radius: 10px;
+  border-radius: 5px;
+  background: $lightBackground;
+  .editTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    p {
+      font-weight: bolder;
+      color: $black;
+    }
+    div {
+      button {
+        margin-left: 10px;
+      }
+    }
+  }
+  .eachProp {
+    background: white;
+    padding: 5px 10px;
+    margin: 5px 0;
+    p {
+      font-weight: bold;
+      color: $black;
+    }
+    input {
+      border-radius: 3px;
+      border: 2px solid $lightBlue;
+      outline: none;
+      width: 99%;
+      background: $lightBackground;
+      padding: 4px;
+      color: $black;
+    }
+  }
+  #imageInput {
+    background: white;
+    padding: 5px 10px;
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & > div {
+      align-self: left;
+    }
+    img {
+      height: 300px;
+      width: 300px;
+      border-radius: 3px;
+      object-fit: cover;
+    }
+    input {
+      border-radius: 3px;
+      border: none;
+      outline: none;
+      padding: 4px;
+    }
+  }
+}

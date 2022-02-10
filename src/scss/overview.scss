@@ -1,0 +1,80 @@
+@import "./variables.scss";
+
+.overviewRoot {
+  background: $lightBackground;
+  padding: 1rem;
+  .overviewStickers {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.5rem;
+    margin-bottom: 10px;
+    .overviewSticker {
+      border-left: 4px $lightBlue solid;
+      background-color: white;
+      border-radius: 0 5px 5px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100px;
+      padding: 0 10px;
+      @include shadow();
+      .value {
+        font-size: 1rem;
+        font-weight: bold;
+        color: $black;
+      }
+      .title {
+        font-weight: bold;
+        font-size: 1rem;
+        color: $lightBlue;
+      }
+      path {
+        fill: $lightBlue;
+      }
+    }
+  }
+  .compareValues {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    @include shadow();
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    div {
+      .key {
+        font-weight: bolder;
+        color: $black;
+      }
+    }
+  }
+}
+
+// @media sreecn and (max-width: 1200px), screen and (max-width: 1500px) {
+//   .overviewRoot {
+//     .overviewStickers {
+//       display: grid;
+//       grid-template-columns: 1fr 1fr 1fr;
+//     }
+//   }
+// }
+
+@media sreecn and (max-width: 800px), screen and (max-width: 1200px) {
+  .overviewRoot {
+    .chartCardContain {
+      grid-template-columns: 1fr;
+    }
+    .overviewStickers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+// @media sreecn and (max-width: 500px), screen and (max-width: 800px) {
+//   .overviewRoot {
+//     .overviewStickers {
+//       display: grid;
+//       grid-template-columns: 1fr;
+//     }
+//   }
+// }

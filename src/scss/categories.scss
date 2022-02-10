@@ -1,0 +1,83 @@
+@import "./variables.scss";
+
+.categories {
+  .addNew {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: $lightBlue;
+    @include shadow();
+    path {
+      fill: white;
+    }
+  }
+  padding: 1rem;
+  background: $lightBackground;
+  .categoriesCardContain {
+    border-radius: 5px;
+    background: $grey;
+    @include shadow();
+    .categoryCard {
+      padding: 10px;
+      border-radius: 5px;
+      background-color: white;
+      color: $black;
+      margin-bottom: 5px;
+      p {
+        margin: 1px 0;
+        font-weight: bold;
+      }
+      .delete {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        div {
+          display: flex;
+          flex-direction: column;
+          button {
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+  .createCategory {
+    margin: 20px 0 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    color: $black;
+    background-color: white;
+    @include shadow();
+    p {
+      color: $black;
+    }
+    .cateInputs {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 10px;
+      input,
+      textArea {
+        margin: 0 0 10px 0;
+        width: 100%;
+        padding: 10px 3px;
+        border: 2px solid $lightBlue;
+        outline: none;
+        padding: 10px 10px;
+        border-radius: 3px;
+        color: $black;
+      }
+      .addCate {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

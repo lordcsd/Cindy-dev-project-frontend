@@ -1,0 +1,156 @@
+@import "./scss/variables.scss";
+@import "./scss/login.scss";
+@import "./scss/products.scss";
+@import "./scss/categories.scss";
+@import "./scss/aside.scss";
+@import "./scss/overview.scss";
+@import "./scss/users.scss";
+@import "./scss/checkout.scss";
+@import "./scss/locations.scss";
+@import "./scss/deliveryFees";
+
+.input {
+  @include input();
+}
+
+.root {
+  background: $lightBackground;
+  height: 100vh;
+  .drawer {
+    transition: 1s ease-in;
+    position: fixed;
+    margin-left: 100vw;
+    height: 100%;
+    width: 60vw;
+    background: $darkBlack;
+    z-index: 2;
+    .each {
+      display: flex;
+      align-items: center;
+      color: white;
+      padding: 0 0 0 20px;
+      border-bottom: 1px solid $black;
+      p {
+        padding: 0 0 0 20px;
+      }
+    }
+  }
+  .optionsList {
+    display: none;
+    .each {
+      display: flex;
+      justify-content: center;
+      color: $black;
+      background-color: white;
+      font-weight: bold;
+      padding: 10px 0;
+      border-bottom: 1px solid $black;
+      div {
+        width: 160px;
+        display: flex;
+        align-items: center;
+        p {
+          padding: 0 0 0 20px;
+        }
+      }
+    }
+  }
+  .main {
+    margin: 0 0 0 200px;
+  }
+  h4 {
+    color: $black;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .mainHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $lightBlue;
+    padding: 0 10px;
+    box-shadow: 0 0px 4px $black;
+    z-index: 1;
+    .customList {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 3px 0 3px 20px;
+      div {
+        width: 30px;
+        height: 3px;
+        border-radius: 1px;
+        background-color: white;
+      }
+    }
+    div {
+      display: flex;
+      justify-content: flex-end;
+      width: 120px;
+    }
+  }
+}
+
+.deliveryRoot {
+  padding: 1rem;
+}
+
+.asideMain {
+  width: 200px;
+  height: 100vh;
+  background-color: $blue;
+  position: fixed;
+}
+
+@media (max-width: 750px) {
+  .asideMain {
+    display: none;
+  }
+  .root {
+    .optionsList {
+      display: block;
+    }
+    .main {
+      margin: 0;
+    }
+    .mainHeader {
+      .customList {
+        display: flex;
+      }
+    }
+  }
+  .loginRoot {
+    .login {
+      width: 90%;
+    }
+  }
+  .searchBar {
+    select {
+      width: 40vw;
+    }
+    input {
+      width: 40vw;
+    }
+  }
+}
+
+//mobiles
+@media (max-width: 500px) {
+  .root {
+    .optionsList {
+      display: none;
+    }
+    .mainHeader {
+      position: fixed;
+      width: 100%;
+      margin: 0;
+    }
+    .mainHomeDisplay {
+      padding-top: 100px;
+    }
+    .drawer {
+      transition: 1s ease-in;
+      margin-left: 40vw;
+    }
+  }
+}

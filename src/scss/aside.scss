@@ -1,0 +1,41 @@
+@import "./variables.scss";
+
+@mixin eachButtonProto() {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  opacity: 0.8;
+  &:hover {
+    cursor: pointer;
+  }
+  p {
+    padding-left: 20px;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+}
+
+.asideMain {
+  display: flex;
+  flex-direction: column;
+  background: $blue;
+  .blank {
+    height: 10%;
+    width: 100%;
+  }
+  .eachButton {
+    @include eachButtonProto();
+    color: white;
+    path {
+      fill: white;
+    }
+  }
+  .eachButtonSelected {
+    @include eachButtonProto();
+    color: white;
+    background: $darkBlack;
+    path {
+      fill: white;
+    }
+  }
+}

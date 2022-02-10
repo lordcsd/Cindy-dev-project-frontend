@@ -1,0 +1,109 @@
+$primary: rgb(70, 70, 70);
+$black: rgb(84, 84, 84);
+$darkBlack: rgb(39, 39, 39);
+$lightBlue: rgb(110, 123, 157);
+$blue: linear-gradient(#232731, $lightBlue);
+$lightBackground: rgb(245, 245, 245);
+$grey: rgb(223, 223, 223);
+
+//food mart colors
+$purple: rgb(162, 47, 146);
+$yellow: rgb(249, 183, 8);
+
+$orange: rgb(255, 59, 101);
+$red: rgb(255, 59, 59);
+$green: rgb(65, 213, 149);
+$inputBorderRadius: 3px;
+
+@mixin topBottonProto() {
+  text-align: center;
+  padding: 10px;
+}
+
+@mixin shadow() {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+@mixin button() {
+  color: white;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+@mixin input() {
+  background: white;
+  border-radius: 5px;
+  outline: $primary;
+  border: none;
+  outline: none;
+  background: $grey;
+}
+
+@mixin outlineBtn($color) {
+  @include button();
+  background: rgba(0, 0, 0, 0);
+  border: 2px solid $color;
+  color: $color;
+}
+
+@mixin fillButton($color) {
+  @include button();
+  background: $color;
+  color: whitesmoke;
+  border: 2px solid $color;
+}
+
+.outlineButtonWhite {
+  @include outlineBtn(white);
+}
+.outlineButtonOther {
+  @include outlineBtn($orange);
+}
+.fillButtonWhite {
+  @include fillButton(white);
+}
+.fillButtonOther {
+  @include fillButton($lightBlue);
+}
+
+p {
+  font-size: 0.8rem;
+}
+
+.searchBar {
+  padding: 0 0 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100px;
+  div {
+    padding: 5px 10px 5px 5px;
+    background: white;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    input {
+      height: 30px;
+      padding: 0 0 0 10px;
+      margin: 0 5px 0 0;
+      color: $black;
+      background-color: $lightBackground;
+    }
+    path {
+      fill: $black;
+    }
+    @include shadow();
+  }
+  select {
+    height: 30px;
+    background: white;
+    outline: none;
+    border: none;
+    color: $black;
+    width: 200px;
+    @include shadow();
+  }
+}

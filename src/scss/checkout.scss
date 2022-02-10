@@ -1,0 +1,68 @@
+@import "./variables.scss";
+
+.deliveryRoot {
+  .deliveryCardsContain {
+    .deliveryCardsHeader {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-gap: 0.5em;
+      background: $lightBlue;
+      color: white;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 5px 5px 0 0;
+    }
+    .deliveryCards {
+      background: $grey;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      .deliveryCard {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 0.5em;
+        align-items: center;
+        color: $black;
+        background: white;
+        margin: 0 0 5px 0;
+        padding: 0 5px;
+        align-items: flex-start;
+        p {
+          word-break: break-word;
+        }
+        .deliveryCardProducts {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+        }
+        .productName {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+// @media sreecn and (max-width: 1200px), screen and (max-width: 1500px) {
+//   .deliveryRoot {
+//     .deliveryCards {
+//       display: grid;
+//       grid-template-columns: 1fr 1fr 1fr;
+//     }
+//   }
+// }
+
+// @media sreecn and (max-width: 800px), screen and (max-width: 1200px) {
+//   .deliveryRoot {
+//     .deliveryCards {
+//       display: grid;
+//       grid-template-columns: 1fr 1fr;
+//     }
+//   }
+// }
+// @media sreecn and (max-width: 500px), screen and (max-width: 800px) {
+//   .deliveryRoot {
+//     .deliveryCards {
+//       display: grid;
+//       grid-template-columns: 1fr;
+//     }
+//   }
+// }

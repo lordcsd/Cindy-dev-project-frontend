@@ -1,0 +1,62 @@
+@import "./variables.scss";
+
+.usersRoot {
+  background: $lightBackground;
+  padding: 1rem;
+  .userCardsContain {
+    background: white;
+    border-radius: 5px;
+    background: $grey;
+    @include shadow();
+    .usersHeader {
+      padding: 10px;
+      background: $lightBlue;
+      font-size: 1rem;
+      font-weight: bolder;
+      border-radius: 5px 5px 0 0;
+      border-radius: 5px 5px 0 0;
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1.5fr 0.5fr;
+    }
+    .userCard {
+      background: white;
+      padding: 10px;
+      margin-bottom: 5px;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1.5fr 0.5fr;
+      grid-gap: 1em;
+      p {
+        word-break: break-word;
+        color: $black;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// @media sreecn and (max-width: 1200px), screen and (max-width: 1500px) {
+//   .usersRoot {
+//     .userCardsContain {
+//       display: grid;
+//       grid-template-columns: 1fr 1fr 1fr;
+//     }
+//   }
+// }
+
+// @media sreecn and (max-width: 800px), screen and (max-width: 1200px) {
+//   .usersRoot {
+//     .userCardsContain {
+//       display: grid;
+//       grid-template-columns: 1fr 1fr;
+//     }
+//   }
+// }
+// @media sreecn and (max-width: 500px), screen and (max-width: 800px) {
+//   .usersRoot {
+//     .userCardsContain {
+//       display: grid;
+//       grid-template-columns: 1fr;
+//     }
+//   }
+// }
