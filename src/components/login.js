@@ -68,6 +68,7 @@ export default function Login() {
         <div>
           <div className="flexRow">
             <div className="logoDiv"></div>
+            <p>xpress meal</p>
           </div>
           <label>Name:</label>
           <input name="name" onChange={(e) => handleInput(e)} />

@@ -1,5 +1,5 @@
 {
-  "name": "Xpress-meal",
+  "name": "xpress-meal",
   "homepage": "https://xpress-meal.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.4",
+    "dotenv": "^16.0.0",
     "google-maps-react": "^2.0.6",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",

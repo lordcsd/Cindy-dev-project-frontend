@@ -17,9 +17,11 @@ import {
   CategorySharp,
   LocationCity,
   EmojiTransportationSharp,
+  Shop,
 } from "@material-ui/icons";
 import Overview from "./overview";
 import DeliveryFees from "./deliveryFees";
+import Vendors from "./vendor";
 
 //let baseURL = "http://localhost:4000";
 let baseURL = "https://xpress-meal-backend.herokuapp.com";
@@ -44,8 +46,10 @@ function Home() {
     <Deliveries baseURL={baseURL} showLoginAgain={showLoginAgain} key={2} />,
     <Users baseURL={baseURL} showLoginAgain={showLoginAgain} key={3} />,
     <Categories baseURL={baseURL} showLoginAgain={showLoginAgain} key={4} />,
-    <Location baseURL={baseURL} showLoginAgain={showLoginAgain} key={5} />,
-    <DeliveryFees baseURL={baseURL} showLoginAgain={showLoginAgain} key={6} />,
+    <Vendors baseURL={baseURL} showLoginAgain={showLoginAgain} key={5} />,
+    // <Location baseURL={baseURL} showLoginAgain={showLoginAgain} key={6} />,
+    // <DeliveryFees baseURL={baseURL} showLoginAgain={showLoginAgain} key={7} />,
+
   ];
 
   let switchSelected = (which) => {
@@ -81,7 +85,7 @@ function Home() {
       icon: () => <ViewAgenda />,
     },
     {
-      title: "Check-Outs",
+      title: "Purchases",
       method: () => {
         switchSelected(2);
       },
@@ -95,26 +99,33 @@ function Home() {
       icon: () => <VerifiedUserSharp />,
     },
     {
-      title: "Categories",
+      title: "Food Categories",
       method: () => {
         switchSelected(4);
       },
       icon: () => <CategorySharp />,
     },
     {
-      title: "Location",
+      title: "Vendors",
       method: () => {
         switchSelected(5);
       },
-      icon: () => <LocationCity />,
+      icon: () => <Shop />,
     },
-    {
-      title: "Delivery Fees",
-      method: () => {
-        switchSelected(6);
-      },
-      icon: () => <EmojiTransportationSharp />,
-    },
+    // {
+    //   title: "Location",
+    //   method: () => {
+    //     switchSelected(6);
+    //   },
+    //   icon: () => <LocationCity />,
+    // },
+    //  {
+    //   title: "Delivery Fees",
+    //   method: () => {
+    //     switchSelected(7);
+    //   },
+    //   icon: () => <EmojiTransportationSharp />,
+    // },
   ];
 
   return (

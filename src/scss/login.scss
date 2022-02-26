@@ -1,8 +1,9 @@
 @import "./variables.scss";
 
 .loginRoot {
-  background: url("../images/bg.png");
-  background-size: auto 100vh;
+  background: url("../images/bg.jpg");
+  animation: background-tween 8s infinite linear;
+  background-size: 100vw auto;
   background-origin: 0;
   header {
     display: grid;
@@ -19,23 +20,26 @@
   align-self: center;
   .login {
     .flexRow {
-      display: flex;
       margin: 0 0 40px 0;
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+      align-items: center;
       .logoDiv {
-        height: 40px;
+        height: 100px;
         width: 100px;
-        align-self: flex-start;
         background: url("../images/headerLogo.svg");
         background-size: 100px;
         background-repeat: no-repeat;
-        margin: 0 20px 0 0;
+        margin: 0 10px 0 0;
       }
-      h4 {
-        font-size: 1rem;
+      p {
+        font-size: 2.1rem;
         margin: 10px 0;
       }
     }
     margin: auto;
+    padding: 1rem 0;
     background-color: $lightBlue;
     color: white;
     display: flex;
@@ -44,9 +48,9 @@
     align-items: center;
     align-self: center;
     width: 50%;
-    height: 50%;
+    // height: 50%;
     border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0 0 20px;
+    box-shadow: rgba(0, 0, 0, 0.6) 0 0 90px;
     &:hover {
       box-shadow: 0 0 0 black;
       transition: 0.5s ease-in;
@@ -81,7 +85,7 @@
   position: absolute;
   margin-bottom: 10px;
   height: 50px;
-  background-color:rgb(247, 96, 121);
+  background-color: rgb(247, 96, 121);
   animation: loading 4s infinite;
 }
 
@@ -93,5 +97,14 @@
   }
   100% {
     width: 100vw;
+  }
+}
+
+@keyframes background-tween {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100vw 0;
   }
 }

@@ -4,7 +4,7 @@ import { Add, Close } from "@material-ui/icons";
 
 let api, store;
 
-let CategoryCard = ({ props, deleteOne, selectCard }) => {
+let VendorCard = ({ props, deleteOne, selectCard }) => {
   return (
     <div className="categoryCard">
       <div className="delete">
@@ -27,25 +27,25 @@ let CategoryCard = ({ props, deleteOne, selectCard }) => {
 
       </div>
       <div>
-        <p>{props.description}</p>
+        <p>{props.location}</p>
       </div>
     </div>
   );
 };
 
 function CreateOrEdit({ props, addNew, updateOne }) {
-  let [state, setState] = useState({ _id: "", name: "", description: "" });
+  let [state, setState] = useState({ _id: "", name: "", location: "" });
 
   useEffect(() => {
-    if (props._id && props.name && props.description) {
-      setState({ _id: props._id, name: props.name, description: props.description })
+    if (props._id && props.name && props.location) {
+      setState({ _id: props._id, name: props.name, location: props.location })
     }
   }, [])
 
   function handleChange(e) { setState({ ...state, [e.target.name]: e.target.value }) }
 
   return <div className="createCategory">
-    <p>Add New Category</p>
+    <p>Add New Vendor</p>
     <div className="cateInputs">
       <input
         placeholder="Name"
@@ -56,20 +56,20 @@ function CreateOrEdit({ props, addNew, updateOne }) {
         }}
       />
       <textarea
-        placeholder="description"
-        value={state.description}
-        name="description"
+        placeholder="location"
+        value={state.location}
+        name="location"
         onChange={(e) => {
           handleChange(e);
         }}
       />
       <div className="addCate">
         {
-          state._id && state.name && state.description ?
+          state._id && state.name && state.location ?
             <button className="fillButtonOther" onClick={() => updateOne(state)}>
               Update
             </button>
-            : <button className="fillButtonOther" onClick={() => addNew(state.name, state.description)}>
+            : <button className="fillButtonOther" onClick={() => addNew(state.name, state.location)}>
               Add
             </button>
         }
@@ -78,31 +78,31 @@ function CreateOrEdit({ props, addNew, updateOne }) {
   </div>
 }
 
-export default function Categories({ baseURL, showLoginAgain }) {
+export default function Vendors({ baseURL, showLoginAgain }) {
   let [state, setState] = useState({
-    categories: [],
+    vendors: [],
     name: "",
-    description: "",
+    location: "",
     createNew: false,
     selected: {}
   });
 
-  let fetchCategories = () => {
+  let fetchVendors = () => {
     api
-      .get(`${baseURL}/categories`)
+      .get(`${baseURL}/vendors/get`)
       .then((res) => {
-        setState({ ...state, categories: res.data.categories, createNew: false, selected: {} });
+        setState({ ...state, vendors: res.data.vendors, createNew: false, selected: {} });
       })
       .catch((err) => console.log(err));
   };
 
   let deleteOne = (_id) => {
-    if (window.confirm("Are You Sure You Want to Delete Category?")) {
+    if (window.confirm("Are You Sure You Want to Delete Vendor?")) {
       api
-        .delete(`${baseURL}/categories/${_id}`)
+        .delete(`${baseURL}/vendors/delete/${_id}`)
         .then((res) => {
-          window.alert("Category removed")
-          fetchCategories();
+          window.alert("Vendor removed")
+          fetchVendors();
         })
         .catch((err) => {
           checkAuth(err)
@@ -119,15 +119,15 @@ export default function Categories({ baseURL, showLoginAgain }) {
   }
 
   async function selectCard(index) {
-    await setState({ ...state, selected: state.categories[index], createNew: true })
+    await setState({ ...state, selected: state.vendors[index], createNew: true })
   }
 
   let updateOne = (params) => {
     if (window.confirm("Are you sure you want to update this record?")) {
-      api.patch(`${baseURL}/categories/`, params)
+      api.patch(`${baseURL}/vendors/edit`, params)
         .then((res) => {
-          window.alert("Category Updated");
-          fetchCategories();
+          window.alert("Vendor Updated");
+          fetchVendors();
         })
         .catch((err) => {
           checkAuth(err)
@@ -135,13 +135,13 @@ export default function Categories({ baseURL, showLoginAgain }) {
     }
   }
 
-  let addNew = (name, description) => {
-    let data = { name, description };
+  let addNew = (name, location) => {
+    let data = { name, location };
     api
-      .post(`${baseURL}/categories`, data)
+      .post(`${baseURL}/vendors/create`, data)
       .then((res) => {
-        window.alert("Category Added");
-        fetchCategories();
+        window.alert("Vendor Added");
+        fetchVendors();
       })
       .catch((err) => {
         if (err.message.includes("401")) {
@@ -158,21 +158,21 @@ export default function Categories({ baseURL, showLoginAgain }) {
         url: baseURL,
         headers: { Authorization: `Bearer ${store.token}` },
       });
-      fetchCategories();
+      fetchVendors();
     } else {
       api = axios.create({ url: baseURL });
-      fetchCategories();
+      fetchVendors();
     }
     return () => ac.abort();
   }, []);
 
   return (
     <div className="categories">
-      <h4>Manage Categories</h4>
+      <h4>Manage Vendors</h4>
       <div className="categoriesHead"></div>
       <div className="categoriesCardContain">
-        {!state.createNew ? state.categories.map((each, index) => (
-          <CategoryCard props={each} key={index} deleteOne={deleteOne} selectCard={() => selectCard(index)} />
+        {!state.createNew ? state.vendors.map((each, index) => (
+          <VendorCard props={each} key={index} deleteOne={deleteOne} selectCard={() => selectCard(index)} />
         )) : <CreateOrEdit props={state.selected} addNew={addNew} updateOne={updateOne} />}
       </div>
 
