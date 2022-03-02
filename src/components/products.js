@@ -3,11 +3,13 @@ import axios from "axios";
 import ProductCard from "./productComponents/productCard";
 import ProductEdit from "./productComponents/productEdit";
 import { SearchOutlined } from "@material-ui/icons";
+import qs from "qs";
 let store, api;
 
 export default function Products({ baseURL, showLoginAgain }) {
   let [state, setState] = useState({
     categories: [],
+    vendors: [],
     products: [],
     addingNew: false,
     searchInput: "",
@@ -30,20 +32,15 @@ export default function Products({ baseURL, showLoginAgain }) {
   async function checkAuth(err) {
     if (err.message.includes("401")) {
       showLoginAgain();
-    } if (err.message.includes("422")) {
+    } if (err.message.includes("409")) {
       alert("Record already exists")
+    } if (err.message.includes("422")) {
+      alert("Invalid request body")
     }
   }
 
   let fetchProducts = async (page = 1, search = "") => {
-    let url = `${baseURL}/products`;
-    if (search && page) {
-      url += "?search=" + search + "&page=" + page;
-    } else if (search) {
-      url += "?search=" + search;
-    } else if (page) {
-      url += "?page=" + page;
-    }
+    let url = `${baseURL}/products?` + qs.stringify({ page, search });
 
     axios
       .get(url)
@@ -53,10 +50,13 @@ export default function Products({ baseURL, showLoginAgain }) {
           pages.push(i);
         }
 
+
+
         setState({
           ...state,
           products: getRes.data.products,
-          categories: getRes.data.categories.map((each) => each.name),
+          categories: getRes.data.categories,
+          vendors: getRes.data.vendors,
           page: getRes.data.page,
           last_page: getRes.data.last_page,
           pagesList: pages,
@@ -81,6 +81,9 @@ export default function Products({ baseURL, showLoginAgain }) {
   };
 
   let updateOne = (body) => {
+    const required = "_id,image,title,desc,inStock,category,price,vendor".split(",")
+    let filtered = {};
+    required.forEach(e => body[e] ? filtered[e] = body[e] : null)
     if (validateInputs(body)) {
       if (window.confirm("Are You Sure Want To Update This Product?")) {
         api
@@ -107,9 +110,12 @@ export default function Products({ baseURL, showLoginAgain }) {
   };
 
   let saveOne = (body) => {
+    const required = "image,title,desc,inStock,category,price,vendor".split(",");
+    const newBody = {}
+    required.forEach(e => body[e] ? newBody[e] = body[e] : null)
     if (validateInputs(body)) {
       api
-        .post(`${baseURL}/products`, body)
+        .post(`${baseURL}/products`, newBody)
         .then((res) => {
           alert("saved");
           toggleAddTicket();
@@ -176,7 +182,7 @@ export default function Products({ baseURL, showLoginAgain }) {
         <select onChange={(e) => fetchByCategory(Number(e.target.value))}>
           {arrayWhichDefaultAll.map((each, index) => (
             <option key={index} value={index}>
-              {each}
+              {typeof each === "string" ? each : each.name}
             </option>
           ))}
         </select>
@@ -228,6 +234,7 @@ export default function Products({ baseURL, showLoginAgain }) {
         ) : (
           <ProductEdit
             categories={state.categories}
+            vendors={state.vendors}
             props={state.presentEdit}
             oldTicket={state.oldTicket}
             saveOne={saveOne}

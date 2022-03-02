@@ -16,6 +16,7 @@ const convertToBase64 = (file) => {
 export default function ProductEdit({
   props,
   categories,
+  vendors,
   oldTicket,
   deleteOne,
   updateOne,
@@ -28,9 +29,11 @@ export default function ProductEdit({
     desc: props ? props.desc : "",
     price: props ? props.price : 0,
     inStock: props ? props.inStock : 0,
+    categories,
     category: "",
-    categories: categories,
-    oldTicket: oldTicket,
+    vendors,
+    vendor: "",
+    oldTicket,
   });
 
   let handleUpload = (e) => {
@@ -48,7 +51,7 @@ export default function ProductEdit({
     });
   };
 
-  let toMap = ["title", "desc", "category", "inStock", "price"];
+  let toMap = ["title", "desc", "category", "vendor", "inStock", "price"];
 
   useEffect(() => {
     setState({
@@ -56,7 +59,8 @@ export default function ProductEdit({
       _id: props._id,
       title: props.title,
       desc: props.desc,
-      category: props.category,
+      category: props.category ? props.category : categories[0]['name'],
+      vendor: props.vendor ? props.vendor : vendors[0]["name"],
       inStock: props.inStock,
       price: props.price,
       image: props.image,
@@ -110,26 +114,43 @@ export default function ProductEdit({
                 onChange={(e) => {
                   setState({
                     ...state,
-                    category: categories[e.target.value],
+                    category: categories[e.target.value]["name"],
                   });
                 }}
               >
                 {categories.map((eachCat, catIndex) => {
                   return (
                     <option key={catIndex} value={catIndex}>
-                      {eachCat}
+                      {eachCat.name}
                     </option>
                   );
                 })}
               </select>
-            ) : (
-              <input
-                type={["price", "inStock"].includes(each) ? "number" : "text"}
-                name={each}
-                value={state[each]}
-                onChange={handleChange}
-              />
-            )}
+            ) : each == "vendor" ? <select
+              defaultValue={vendors.find(e => e['name'] == props.vendor)}
+              onChange={(e) => {
+                setState({
+                  ...state,
+                  vendor: vendors[e.target.value]["name"],
+                });
+              }}
+            >
+              {vendors.map((eachVen, venIndex) => {
+                return (
+                  <option key={venIndex} value={venIndex}>
+                    {eachVen.name}
+                  </option>
+                );
+              })}
+            </select> :
+              (
+                <input
+                  type={["price", "inStock"].includes(each) ? "number" : "text"}
+                  name={each}
+                  value={state[each]}
+                  onChange={handleChange}
+                />
+              )}
           </div>
         );
       })}
