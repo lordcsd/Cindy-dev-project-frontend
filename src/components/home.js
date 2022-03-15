@@ -47,8 +47,8 @@ function Home() {
     <Users baseURL={baseURL} showLoginAgain={showLoginAgain} key={3} />,
     <Categories baseURL={baseURL} showLoginAgain={showLoginAgain} key={4} />,
     <Vendors baseURL={baseURL} showLoginAgain={showLoginAgain} key={5} />,
-    // <Location baseURL={baseURL} showLoginAgain={showLoginAgain} key={6} />,
-    // <DeliveryFees baseURL={baseURL} showLoginAgain={showLoginAgain} key={7} />,
+    <DeliveryFees baseURL={baseURL} showLoginAgain={showLoginAgain} key={6} />,
+    // <Location baseURL={baseURL} showLoginAgain={showLoginAgain} key={7} />,
 
   ];
 
@@ -112,20 +112,21 @@ function Home() {
       },
       icon: () => <Shop />,
     },
+         {
+      title: "Delivery Fees",
+      method: () => {
+        switchSelected(6);
+      },
+      icon: () => <EmojiTransportationSharp />,
+    },
     // {
     //   title: "Location",
     //   method: () => {
-    //     switchSelected(6);
+    //     switchSelected(7);
     //   },
     //   icon: () => <LocationCity />,
     // },
-    //  {
-    //   title: "Delivery Fees",
-    //   method: () => {
-    //     switchSelected(7);
-    //   },
-    //   icon: () => <EmojiTransportationSharp />,
-    // },
+
   ];
 
   return (
