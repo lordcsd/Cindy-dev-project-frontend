@@ -15,15 +15,12 @@ import {
   ViewAgenda,
   VerifiedUserSharp,
   CategorySharp,
-  LocationCity,
-  EmojiTransportationSharp,
   Shop,
 } from "@material-ui/icons";
 import Overview from "./overview";
-import DeliveryFees from "./deliveryFees";
 import Vendors from "./vendor";
 
-//let baseURL = "http://localhost:4000";
+// let baseURL = "http://localhost:4000";
 let baseURL = "https://xpress-meal-backend.herokuapp.com";
 let api, store;
 
@@ -47,9 +44,6 @@ function Home() {
     <Users baseURL={baseURL} showLoginAgain={showLoginAgain} key={3} />,
     <Categories baseURL={baseURL} showLoginAgain={showLoginAgain} key={4} />,
     <Vendors baseURL={baseURL} showLoginAgain={showLoginAgain} key={5} />,
-    <DeliveryFees baseURL={baseURL} showLoginAgain={showLoginAgain} key={6} />,
-    // <Location baseURL={baseURL} showLoginAgain={showLoginAgain} key={7} />,
-
   ];
 
   let switchSelected = (which) => {
@@ -111,21 +105,7 @@ function Home() {
         switchSelected(5);
       },
       icon: () => <Shop />,
-    },
-         {
-      title: "Delivery Fees",
-      method: () => {
-        switchSelected(6);
-      },
-      icon: () => <EmojiTransportationSharp />,
-    },
-    // {
-    //   title: "Location",
-    //   method: () => {
-    //     switchSelected(7);
-    //   },
-    //   icon: () => <LocationCity />,
-    // },
+    }
 
   ];
 

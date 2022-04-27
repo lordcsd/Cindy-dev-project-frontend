@@ -8,7 +8,12 @@ let VendorCard = ({ props, deleteOne, selectCard }) => {
   return (
     <div className="categoryCard">
       <div className="delete">
-        <h4>{props.name}</h4>
+        <div>
+          <h4>{props.name}</h4>
+          <p><b>Location: </b>{props.location}</p>
+          <p><b>Reservations: </b>{props.reservations}</p>
+          <p><b>Ddelivery Fee: </b>{props.deliveryFee}</p>
+        </div>
         <div>
           <button
             className="fillButtonOther"
@@ -26,19 +31,17 @@ let VendorCard = ({ props, deleteOne, selectCard }) => {
         </div>
 
       </div>
-      <div>
-        <p>{props.location}</p>
-      </div>
+
     </div>
   );
 };
 
 function CreateOrEdit({ props, addNew, updateOne }) {
-  let [state, setState] = useState({ _id: "", name: "", location: "" });
+  let [state, setState] = useState({ _id: "", name: "", location: "", reservations: 0, deliveryFee: 0 });
 
   useEffect(() => {
     if (props._id && props.name && props.location) {
-      setState({ _id: props._id, name: props.name, location: props.location })
+      setState({ _id: props._id, name: props.name, location: props.location, reservations: props.reservations, deliveryFee: props.deliveryFee });
     }
   }, [])
 
@@ -47,29 +50,54 @@ function CreateOrEdit({ props, addNew, updateOne }) {
   return <div className="createCategory">
     <p>Add New Vendor</p>
     <div className="cateInputs">
-      <input
-        placeholder="Name"
-        value={state.name}
-        name="name"
-        onChange={(e) => {
-          handleChange(e);
-        }}
-      />
-      <textarea
-        placeholder="location"
-        value={state.location}
-        name="location"
-        onChange={(e) => {
-          handleChange(e);
-        }}
-      />
+      <div>
+        <label>Name</label>
+        <input
+          placeholder="Name"
+          value={state.name}
+          name="name"
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        />
+      </div>
+      <div>
+        <label>Location</label>
+        <textarea
+          placeholder="location"
+          value={state.location}
+          name="location"
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        /></div>
+      <div>
+        <label>Reservations</label>
+        <input
+          placeholder="Reservations count"
+          value={state.reservations}
+          name="reservations"
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        /></div>
+      <div>
+        <label>Delivery Fee</label>
+        <input
+          placeholder="Delivery Fee"
+          value={state.deliveryFee}
+          name="deliveryFee"
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        /></div>
       <div className="addCate">
         {
           state._id && state.name && state.location ?
             <button className="fillButtonOther" onClick={() => updateOne(state)}>
               Update
             </button>
-            : <button className="fillButtonOther" onClick={() => addNew(state.name, state.location)}>
+            : <button className="fillButtonOther" onClick={() => addNew(state.name, state.location, state.reservations,state.deliveryFee)}>
               Add
             </button>
         }
@@ -93,7 +121,7 @@ export default function Vendors({ baseURL, showLoginAgain }) {
       .then((res) => {
         setState({ ...state, vendors: res.data.vendors, createNew: false, selected: {} });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => checkAuth(err));
   };
 
   let deleteOne = (_id) => {
@@ -114,7 +142,9 @@ export default function Vendors({ baseURL, showLoginAgain }) {
     if (err.message.includes("401")) {
       showLoginAgain();
     } if (err.message.includes("422")) {
-      alert("Record already exists")
+      alert("Invalid Input, fill all fields");
+    } if (err.message.includes("50")) {
+      alert("Server Error");
     }
   }
 
@@ -123,6 +153,13 @@ export default function Vendors({ baseURL, showLoginAgain }) {
   }
 
   let updateOne = (params) => {
+    if (params.reservations) {
+      params.reservations = parseInt(params.reservations);
+    }
+    if (params.deliveryFee) {
+      params.deliveryFee = parseInt(params.deliveryFee);
+    }
+    console.log("params: ", params)
     if (window.confirm("Are you sure you want to update this record?")) {
       api.patch(`${baseURL}/vendors/edit`, params)
         .then((res) => {
@@ -130,13 +167,15 @@ export default function Vendors({ baseURL, showLoginAgain }) {
           fetchVendors();
         })
         .catch((err) => {
+          console.log(JSON.stringify(err.err));
           checkAuth(err)
         });
     }
   }
 
-  let addNew = (name, location) => {
-    let data = { name, location };
+  let addNew = (name, location, reservations, deliveryFee) => {
+    let data = { name, location, reservations, deliveryFee };
+    console.log(data)
     api
       .post(`${baseURL}/vendors/create`, data)
       .then((res) => {
@@ -144,9 +183,7 @@ export default function Vendors({ baseURL, showLoginAgain }) {
         fetchVendors();
       })
       .catch((err) => {
-        if (err.message.includes("401")) {
-          showLoginAgain();
-        }
+        checkAuth(err)
       });
   };
 

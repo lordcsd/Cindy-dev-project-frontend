@@ -77,7 +77,7 @@ export class MapContainer extends Component {
                 </div>
                 <div className="autocomplete-dropdown-container">
                   {loading && <div>Loading...</div>}
-                  {suggestions.map((suggestion) => {
+                  {suggestions.map((suggestion,index) => {
                     const className = suggestion.active
                       ? "suggestion-item--active"
                       : "suggestion-item";
@@ -86,6 +86,7 @@ export class MapContainer extends Component {
                         {...getSuggestionItemProps(suggestion, {
                           className,
                         })}
+                        key={index}
                       >
                         <span>{suggestion.description}</span>
                       </div>

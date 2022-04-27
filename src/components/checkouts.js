@@ -27,7 +27,7 @@ let EachCard = ({ props, baseURL, select }) => {
       {
         showProducts ?
           props.products.map((each, index) =>
-            <div className="line">
+            <div className="line" key={index}>
               <p className="productName">{each.productTitle}</p>
               <p>Price: {each.price}</p>
               <p>Unit: {each.count}</p>
