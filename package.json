@@ -26,10 +26,10 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "dev": "react-dotenv && react-scripts start",
-    "start": "react-dotenv && serve -s build",
-    "herokuStart": "react-dotenv && serve -s build",
-    "build": "react-dotenv && react-scripts build",
+    "dev": " react-scripts start",
+    "start": " serve -s build",
+    "herokuStart": " serve -s build",
+    "build": " react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build"
