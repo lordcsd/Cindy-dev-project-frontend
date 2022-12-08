@@ -19,9 +19,10 @@ import {
 } from "@material-ui/icons";
 import Overview from "./overview";
 import Vendors from "./vendor";
+import { configConstants } from "../common/constants";
 
-// let baseURL = "http://localhost:4000";
-let baseURL = "https://xpress-meal-backend.herokuapp.com";
+
+const { SERVER_ROOT_URL: baseURL } = configConstants
 let api, store;
 
 function Home() {

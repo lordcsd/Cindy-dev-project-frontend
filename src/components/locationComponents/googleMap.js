@@ -5,6 +5,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import env from "react-dotenv";
+import { configConstants } from "../../common/constants";
 
 export class MapContainer extends Component {
   constructor(props) {
@@ -77,7 +78,7 @@ export class MapContainer extends Component {
                 </div>
                 <div className="autocomplete-dropdown-container">
                   {loading && <div>Loading...</div>}
-                  {suggestions.map((suggestion,index) => {
+                  {suggestions.map((suggestion, index) => {
                     const className = suggestion.active
                       ? "suggestion-item--active"
                       : "suggestion-item";
@@ -121,5 +122,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: env.PLACES_KEY
+  apiKey: configConstants.PLACES_KEY
 })(MapContainer);

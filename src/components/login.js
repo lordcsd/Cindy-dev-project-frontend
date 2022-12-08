@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { configConstants } from "../common/constants";
 
-// let baseURL = "http://localhost:4000";
-let baseURL = "https://xpress-meal-backend.herokuapp.com";
+
+const {SERVER_ROOT_URL: baseURL} = configConstants
 let api;
+
 
 export default function Login() {
   let [state, setState] = useState({
