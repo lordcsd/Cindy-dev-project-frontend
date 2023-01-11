@@ -1,6 +1,5 @@
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import Login from "./components/login";
 import Home from "./components/home";
 
